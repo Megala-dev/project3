@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Frontend</title>
+  <style>
+    body {
+      background-image: url('images/image1.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: orange;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 24px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>WELCOME TO FRONTEND!</h1>
+  <button onclick="callBackend()">Click to Get Message</button>
+  <p id="result"></p>
+
+  <script>
+    function callBackend() {
+      fetch('/api/message')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('result').innerText = data.msg;
+        })
+        .catch(err => {
+          console.error('Error:', err);
+          document.getElementById('result').innerText = 'Error fetching message.';
+        });
+    }
+  </script>
+</body>
+</html>
